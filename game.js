@@ -1,9 +1,13 @@
+/* Computer random pick */
 function getComputerChoice() {
     const computerOptions = ['rock','paper','sciccors']
     const computerNumber = Math.floor(Math.random()*3);
     move = computerOptions[computerNumber];
     return move;
 }
+
+let computerScore = 0
+let playerScore = 0
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = prompt('Pick').toLowerCase();
@@ -12,26 +16,32 @@ function playRound(playerSelection, computerSelection) {
         return "Tie"}
     else if (playerSelection == 'rock') {
         if (computerSelection == 'sciccors') {
-            return "You Win"
+            playerScore++;
+            return "You Win";
         }
         else {
-            return "You Lose"
+            computerScore++;
+            return "You Lose" ;
         }
     }
     else if (playerSelection == 'paper') {
         if (computerSelection == 'rock') {
-            return "You Win"
+            playerScore++ ;
+            return "You Win" ;
         }
         else {
-            return "You Lose"
+            computerScore++ ;
+            return "You Lose" ; 
         }
     }
     else if (playerSelection == 'sciccors') {
         if (computerSelection == 'paper') {
-            return "You Win"
+            playerScore++ ;
+            return "You Win" ; 
         }
         else {
-            return "You Lose"
+            computerScore++ ;
+            return "You Lose" ; 
         }
     }
     else {
@@ -40,13 +50,15 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; playerScore < 5 || computerScore <5 ; i++) {
         playRound();
+    
+    if (playerScore == 5) {
+        return "You did it, You Win"
+    }
+    if (computerScore == 5) {
+        return "The Computer Wins"
     }
 }
+}
 
-/* How do we know which one is the winner
-game of 5
-if not 5 games then keep playing
-
-count the win lose*/
