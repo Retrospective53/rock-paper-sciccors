@@ -1,4 +1,4 @@
-/* Computer random pick */
+// Computer random pick 
 function getComputerChoice() {
     const computerOptions = ['rock','paper','sciccors']
     const computerNumber = Math.floor(Math.random()*3);
@@ -6,42 +6,76 @@ function getComputerChoice() {
     return move;
 }
 
-let computerScore = 0
-let playerScore = 0
+let computerScore = 0;
+let playerScore = 0;
+const btnStart = document.querySelector('.btnStartGame');
+const btnRock = document.querySelector('.rock');
+const btnPaper = document.querySelector('.paper');
+const btnSciccors = document.querySelector('.sciccors');
+btnRock.addEventListener('click', playRound);
+btnPaper.addEventListener('click', playRound);
+btnSciccors.addEventListener('click', playRound);
+
+// Display score
+const yourScoreCount = document.querySelector('.yourScoreCount');
+const computerScoreCount = document.querySelector('.computerScoreCount');
+const scoreStatus = document.querySelector('.status');
+function scoreStatusUpdate(e) {
+    scoreStatus.textContent = e;
+}
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = prompt('Pick').toLowerCase();
+    playerSelection = this.className;
     computerSelection = getComputerChoice();
+    function printScore() {
+        console.log('Your score ' + playerScore);
+        console.log('Computer score ' + computerScore);
+        yourScoreCount.textContent = playerScore;
+        computerScoreCount.textContent = computerScore;
+    }
     if (playerSelection == computerSelection) {
-        return "Tie"}
+        scoreStatusUpdate('Tie');
+        console.log("Tie")}
     else if (playerSelection == 'rock') {
         if (computerSelection == 'sciccors') {
             playerScore++;
-            return "You Win";
+            scoreStatusUpdate('You Win')
+            console.log("You Win");
+            printScore();
         }
         else {
             computerScore++;
-            return "You Lose" ;
+            scoreStatusUpdate('Computer Win')
+            console.log("Computer Win");
+            printScore();
         }
     }
     else if (playerSelection == 'paper') {
         if (computerSelection == 'rock') {
             playerScore++ ;
-            return "You Win" ;
+            scoreStatusUpdate('You Win')
+            console.log("You Win");
+            printScore();
         }
         else {
             computerScore++ ;
-            return "You Lose" ; 
+            scoreStatusUpdate('Computer Win')
+            console.log("Computer Win");
+            printScore();
         }
     }
     else if (playerSelection == 'sciccors') {
         if (computerSelection == 'paper') {
             playerScore++ ;
-            return "You Win" ; 
+            scoreStatusUpdate('You Win')
+            console.log("You Win");
+            printScore();
         }
         else {
             computerScore++ ;
-            return "You Lose" ; 
+            scoreStatusUpdate('Computer Win')
+            console.log("Computer Win");
+            printScore();
         }
     }
     else {
@@ -50,15 +84,16 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    for (let i = 0; playerScore < 5 || computerScore <5 ; i++) {
-        playRound();
-    
+    //for (let i = 0; playerScore < 5 || computerScore <5 ; playRound) {
+    computerScore = 0;
+    playerScore = 0;
     if (playerScore == 5) {
-        return "You did it, You Win"
+        console.log(playerScore + ' vs ' + computerScore + "You did it, You Win");
     }
     if (computerScore == 5) {
-        return "The Computer Wins"
+        console.log(playerScore + ' vs ' + computerScore + "The Computer Wins");
     }
 }
-}
+btnStart.addEventListener('click', game);
+
 

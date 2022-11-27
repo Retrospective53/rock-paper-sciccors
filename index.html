@@ -5,9 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teh Game</title>
-    <script src="game.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <script src="game.js" defer></script>
 </head>
 <body>
-    
+    <button class="btnStartGame">Start the game</button>
+    <div class="options">
+        <button class="rock">Pick Rock</button>
+        <button class="paper">Pick Paper</button>
+        <button class="sciccors">Pick Sciccors</button>
+    </div>
+    <div class="content">
+        <div>Score Board</div>
+        <div class="status">What will it be?</div>
+        <div class="scoreBoard">
+            <div class="headScore">Your Score
+                <div class="yourScoreCount">0</div>
+            </div>
+            <div class="headScore">Computer Score
+                <div class="computerScoreCount">0</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
