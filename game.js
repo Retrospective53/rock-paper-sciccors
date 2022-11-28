@@ -8,6 +8,9 @@ function getComputerChoice() {
 
 let computerScore = 0;
 let playerScore = 0;
+let currentRound = 0;
+
+// Button with playRound function when clicked
 const btnStart = document.querySelector('.btnStartGame');
 const btnRock = document.querySelector('.rock');
 const btnPaper = document.querySelector('.paper');
@@ -23,29 +26,39 @@ const scoreStatus = document.querySelector('.status');
 function scoreStatusUpdate(e) {
     scoreStatus.textContent = e;
 }
+function printScore() {
+    console.log('Your score ' + playerScore);
+    console.log('Computer score ' + computerScore);
+    yourScoreCount.textContent = playerScore;
+    computerScoreCount.textContent = computerScore;
+}
 
+// A round of the game with result displayed 
 function playRound(playerSelection, computerSelection) {
+    if (playerScore == 5 || computerScore == 5) return;
+
+    if (playerScore  > 5 || computerScore > 5) {
+        scoreStatusUpdate('You Cheat')
+        return;
+    };
     playerSelection = this.className;
     computerSelection = getComputerChoice();
-    function printScore() {
-        console.log('Your score ' + playerScore);
-        console.log('Computer score ' + computerScore);
-        yourScoreCount.textContent = playerScore;
-        computerScoreCount.textContent = computerScore;
-    }
+    
     if (playerSelection == computerSelection) {
         scoreStatusUpdate('Tie');
-        console.log("Tie")}
+        console.log("Tie")
+    }
+        
     else if (playerSelection == 'rock') {
         if (computerSelection == 'sciccors') {
             playerScore++;
-            scoreStatusUpdate('You Win')
+            scoreStatusUpdate('You Win');
             console.log("You Win");
             printScore();
         }
         else {
             computerScore++;
-            scoreStatusUpdate('Computer Win')
+            scoreStatusUpdate('Computer Win');
             console.log("Computer Win");
             printScore();
         }
@@ -53,13 +66,13 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection == 'paper') {
         if (computerSelection == 'rock') {
             playerScore++ ;
-            scoreStatusUpdate('You Win')
+            scoreStatusUpdate('You Win');
             console.log("You Win");
             printScore();
         }
         else {
             computerScore++ ;
-            scoreStatusUpdate('Computer Win')
+            scoreStatusUpdate('Computer Win');
             console.log("Computer Win");
             printScore();
         }
@@ -67,13 +80,13 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection == 'sciccors') {
         if (computerSelection == 'paper') {
             playerScore++ ;
-            scoreStatusUpdate('You Win')
+            scoreStatusUpdate('You Win');
             console.log("You Win");
             printScore();
         }
         else {
             computerScore++ ;
-            scoreStatusUpdate('Computer Win')
+            scoreStatusUpdate('Computer Win');
             console.log("Computer Win");
             printScore();
         }
@@ -81,18 +94,26 @@ function playRound(playerSelection, computerSelection) {
     else {
         return "Hey you have to pick"
     }
+
+    if (playerScore == 5) {
+        scoreStatusUpdate('Human wins best of five')
+        return;
+    }
+    else if (computerScore == 5) {
+        scoreStatusUpdate('Computer wins best of five')
+        return;
+    }
 }
 
+// Best of five game
 function game() {
-    //for (let i = 0; playerScore < 5 || computerScore <5 ; playRound) {
     computerScore = 0;
     playerScore = 0;
-    if (playerScore == 5) {
-        console.log(playerScore + ' vs ' + computerScore + "You did it, You Win");
-    }
-    if (computerScore == 5) {
-        console.log(playerScore + ' vs ' + computerScore + "The Computer Wins");
-    }
+    printScore();
+}
+
+function roundCount() {
+
 }
 btnStart.addEventListener('click', game);
 
