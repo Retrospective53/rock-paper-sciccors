@@ -1,39 +1,21 @@
-// variable
-let computerScore = 0;
-let playerScore = 0;
-let currentRound = 0;
-let playerSelection;
-
 // Button computer pick
 const rockComp = document.querySelector('.rockComp');
 const paperComp = document.querySelector('.paperComp');
 const sciccorsComp = document.querySelector('.sciccorsComp');
 
-// Computer random pick & button hightlight
+// Computer random pick 
 function getComputerChoice() {
     const computerOptions = ['rock','paper','sciccors']
     const computerNumber = Math.floor(Math.random()*3);
     move = computerOptions[computerNumber];
-    if (move == 'rock') {
-        rockComp.classList.add('selected');
-        paperComp.classList.remove('selected');
-        sciccorsComp.classList.remove('selected');
-    }
-    else if (move == 'paper') {
-        paperComp.classList.add('selected');
-        rockComp.classList.remove('selected');
-        sciccorsComp.classList.remove('selected');
-    }
-    else if (move == 'sciccors') {
-        sciccorsComp.classList.add('selected');
-        paperComp.classList.remove('selected');
-        rockComp.classList.remove('selected');
     return move;
 }
-}
 
+let computerScore = 0;
+let playerScore = 0;
+let currentRound = 0;
 
-// Button with playRound function when clicked (player)
+// Button with playRound function when clicked
 const btnStart = document.querySelector('.btnStartGame');
 const btnRock = document.querySelector('.rock');
 const btnPaper = document.querySelector('.paper');
@@ -41,7 +23,6 @@ const btnSciccors = document.querySelector('.sciccors');
 btnRock.addEventListener('click', playRound);
 btnPaper.addEventListener('click', playRound);
 btnSciccors.addEventListener('click', playRound);
-
 
 // Display score
 const yourScoreCount = document.querySelector('.yourScoreCount');
@@ -70,8 +51,7 @@ function playRound(playerSelection, computerSelection) {
     
     if (playerSelection == computerSelection) {
         scoreStatusUpdate('Tie');
-        console.log("Tie");
-        return;
+        console.log("Tie")
     }
         
     else if (playerSelection == 'rock') {
@@ -119,7 +99,21 @@ function playRound(playerSelection, computerSelection) {
     else {
         return "Hey you have to pick"
     }
-
+    if (computerSelection == 'rock') {
+        rockComp.classList.add('selected');
+        paperComp.classList.remove('selected');
+        sciccorsComp.classList.remove('selected');
+    }
+    else if (computerSelection == 'paper') {
+        paperComp.classList.add('selected');
+        rockComp.classList.remove('selected');
+        sciccorsComp.classList.remove('selected');
+    }
+    else if (computerSelection == 'sciccors') {
+        sciccorsComp.classList.add('selected');
+        paperComp.classList.remove('selected');
+        rockComp.classList.remove('selected');
+    }
     if (playerScore == 5) {
         scoreStatusUpdate('Human wins best of five')
         return;
