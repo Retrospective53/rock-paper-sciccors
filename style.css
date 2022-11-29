@@ -3,6 +3,7 @@
     justify-content: space-evenly;
     align-items: center;
     gap: 30px;
+    border: solid darkcyan;
 }
 
 body {
@@ -16,6 +17,7 @@ body {
     font-family: Arial, 'Arial Narrow','Open Sans', 'Helvetica Neue', sans-serif;
     gap: 20px;
     flex: 1;
+    border: solid red;
 }
 
 
@@ -25,9 +27,18 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    border: dashed blue;
 }
 
 .scoreBoard {
     display: flex;
     gap: 20px;
+}
+
+.computerPick button {
+    border: none;
+}
+
+.computerPick button.selected {
+    border: solid deeppink;
 }
